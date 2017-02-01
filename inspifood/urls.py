@@ -13,6 +13,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'foods', views.FoodViewSet)
 router.register(r'places', views.PlaceViewSet)
+router.register(r'foodgroups', views.FoodGroupViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 
-from .serializers import UserSerializer, GroupSerializer, FoodSerializer, PlaceSerializer
-from .models import Food, Place
+from .serializers import UserSerializer, GroupSerializer, FoodSerializer, PlaceSerializer, FoodGroupSerializer
+from .models import Food, Place, FoodGroup
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -48,3 +48,11 @@ class PlaceViewSet(viewsets.ModelViewSet):
     """
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
+
+
+class FoodGroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = FoodGroup.objects.all()
+    serializer_class = FoodGroupSerializer
