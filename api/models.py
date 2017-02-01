@@ -31,6 +31,7 @@ class Food(Mixin):
     photo = models.ImageField(upload_to=item_upload_to, null=True, blank=True)
     slug = models.CharField(max_length=255, unique=True, null=True, blank=True)
     food_group = models.ForeignKey('FoodGroup', related_name="food_groups", null=True, blank=True)
+    place = models.ForeignKey('Place', related_name="food_place", null=True, blank=True)
 
     def __unicode__(self):
         return 'Food(%s)' % self.slug
@@ -48,7 +49,6 @@ class Place(Mixin):
     description = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to=item_upload_to, null=True, blank=True)
     slug = models.CharField(max_length=255, unique=True, null=True, blank=True)
-    food = models.ManyToManyField('Food', related_name="place_foods", blank=True)
     location =  models.CharField(max_length=255, null=True, blank=True)
     place_type = models.CharField(max_length=100, choices=PLACE_TYPE_CHOICES)
 

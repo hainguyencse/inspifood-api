@@ -16,13 +16,20 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'name')
 
 
-class FoodSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Food
-        fields = ('name', 'description', 'photo', 'slug')
-
-
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Place
         fields = ('name', 'description', 'photo', 'slug', 'location', 'place_type')
+
+
+class FoodSerializer(serializers.HyperlinkedModelSerializer):
+    food_group = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='slug'
+     )
+
+    place = PlaceSerializer()
+
+    class Meta:
+        model = Food
+        fields = ('name', 'description', 'photo', 'slug', 'food_group', 'place')
