@@ -17,9 +17,14 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
+    place_type = serializers.SerializerMethodField()
+
     class Meta:
         model = Place
         fields = ('name', 'description', 'photo', 'slug', 'location', 'place_type')
+
+    def get_place_type(self,obj):
+        return obj.get_place_type_display()
 
 
 class FoodSerializer(serializers.HyperlinkedModelSerializer):
