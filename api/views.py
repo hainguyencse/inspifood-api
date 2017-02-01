@@ -28,6 +28,19 @@ class FoodViewSet(viewsets.ModelViewSet):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
 
+    def get_queryset(self):
+        queryset = Food.objects.all()
+        food_group = self.request.query_params.get('food_group', None)
+        if food_group is not None:
+            queryset = queryset.filter(food_group__slug=food_group)
+
+        place = self.request.query_params.get('place', None)
+        if place is not None:
+            queryset = queryset.filter(place__slug=place)
+
+        return queryset
+
+
 
 class PlaceViewSet(viewsets.ModelViewSet):
     """
